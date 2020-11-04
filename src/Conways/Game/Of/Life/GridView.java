@@ -18,6 +18,7 @@ public class GridView extends JComponent {
     public static final Color LIVE_COLOR = Color.WHITE;
     public static final Color DEAD_COLOR = Color.BLACK;
     int[][] squares;
+
     public GridView(Grid grid) {
     }
 
@@ -30,7 +31,12 @@ public class GridView extends JComponent {
     }
 
     private void paintGrid(Graphics g) {
+        for (int x = 0; x < WIDTH; x++) {
+            for (int y = 0; y < HEIGHT; y++) {
+                g.drawRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
 
+            }
+        }
     }
 
 }
