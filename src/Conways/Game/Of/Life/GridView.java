@@ -26,6 +26,7 @@ public class GridView extends JComponent {
 
     }
 
+    //Changes color of cells that don't have sufficient neighbors
     private void paintDead(Graphics g) {
     }
 
