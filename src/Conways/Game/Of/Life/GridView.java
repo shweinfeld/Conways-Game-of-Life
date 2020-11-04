@@ -40,4 +40,3 @@ public class GridView extends JComponent {
     }
 
 }
-
