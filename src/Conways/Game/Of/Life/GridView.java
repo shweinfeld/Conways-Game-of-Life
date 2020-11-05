@@ -28,11 +28,13 @@ public class GridView extends JComponent {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        paintGrid(g);
-        //paintLifeStatus(g);
+        paintBackground(g);
+        paintLifeStatus(g);
+
     }
 
     private void paintLifeStatus(Graphics g) {
+
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 //not sure why ternary wasn't working
@@ -46,14 +48,8 @@ public class GridView extends JComponent {
         }
     }
 
-    private void paintGrid(Graphics g) {
+    private void paintBackground(Graphics g) {
         g.setColor(LINE_COLOR);
         g.fillRect(0, 0, WIDTH * BORDERED_CELL_SIZE, HEIGHT * BORDERED_CELL_SIZE);
-        g.setColor(DEAD_COLOR);
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                g.fillRect(i * BORDERED_CELL_SIZE, j * BORDERED_CELL_SIZE, CELL_SIZE, CELL_SIZE);
-            }
-        }
     }
 }
