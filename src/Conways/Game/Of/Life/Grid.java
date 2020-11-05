@@ -9,10 +9,11 @@ public class Grid {
      * Author: Jennifer Komendant
      */
 
-    private final int row = 30;
-    private final int col = 50;
+    private final int row = 50;
+    private final int col = 30;
     private final boolean[][] gridArray = new boolean[row][col];
     private int generation = 0;
+
 
     public Grid() {
 
