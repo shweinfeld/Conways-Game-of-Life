@@ -1,7 +1,5 @@
 package Conways.Game.Of.Life;
 
-import java.util.Arrays;
-
 public class Grid {
 
     /**
@@ -36,7 +34,7 @@ public class Grid {
                     gridArray[i][j] = false;
                 } else if (gridArray[i][j] && aliveNeighbors > 3) {
                     gridArray[i][j] = false;
-                } else if (gridArray[i][j] && (aliveNeighbors == 2 || aliveNeighbors == 3)) {
+                } else if (gridArray[i][j] && aliveNeighbors == 3) {
                     gridArray[i][j] = true;
                 } else {
                     gridArray[i][j] = gridArray[i][j];
