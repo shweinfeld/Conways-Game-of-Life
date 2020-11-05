@@ -1,5 +1,7 @@
 package Conways.Game.Of.Life;
 
+import java.util.Arrays;
+
 public class Grid {
 
     /**
@@ -9,9 +11,9 @@ public class Grid {
      * Author: Jennifer Komendant
      */
 
-    private final int row = 50;
-    private final int col = 30;
-    private final boolean[][] gridArray = new boolean[row][col];
+    private final int ROW = 50;
+    private final int COL = 30;
+    private final boolean[][] gridArray = new boolean[ROW][COL];
     private int generation = 0;
 
 
@@ -20,12 +22,12 @@ public class Grid {
     }
 
     public void goToNextGeneration() {
-        for (int i = 0; i < row - 1; i++) {
-            for (int j = 0; j < col - 1; j++) {
+        for (int i = 0; i < ROW - 1; i++) {
+            for (int j = 0; j < COL - 1; j++) {
                 int aliveNeighbors = 0;
                 for (int k = -1; k <= 1; k++) {
                     for (int l = -1; l <= 1; l++) {
-                        if (gridArray[i + k][j + l]) {
+                        if ((i+k)!= -1 && (j+l) !=-1 && gridArray[i + k][j + l]) {
                             aliveNeighbors++;
                         }
                     }
@@ -45,9 +47,9 @@ public class Grid {
     }
 
     public void clearGrid() {
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                gridArray[row][col] = false;
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COL; j++) {
+                gridArray[i][j] = false;
             }
         }
         generation = 0;
