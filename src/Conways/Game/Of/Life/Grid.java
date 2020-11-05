@@ -49,6 +49,7 @@ public class Grid {
                 gridArray[row][col] = false;
             }
         }
+        generation = 0;
     }
 
     public boolean getCells(int row, int col) {
