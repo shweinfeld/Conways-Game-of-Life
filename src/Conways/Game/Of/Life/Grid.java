@@ -43,7 +43,6 @@ public class Grid {
                 }
             }
         }
-        System.out.println(Arrays.deepToString(gridArray));
         increaseGeneration();
     }
 
