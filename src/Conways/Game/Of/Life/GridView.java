@@ -30,19 +30,38 @@ public class GridView extends JComponent {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         paintGrid(g);
-        //paintLive(g);
-        //paintDead(g);
+        paintLifeStatus(g);
+    }
+
+    private void paintLifeStatus(Graphics g) {
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
+                //not sure why ternary wasn't working
+                if (grid.getCells(i, j)) {
+                    g.setColor(LIVE_COLOR);
+                } else {
+                    g.setColor(DEAD_COLOR);
+                }
+            }
+        }
     }
 
     private void paintGrid(Graphics g) {
-        g.setColor(LINE_COLOR);
+
         //draw vertical grid lines
         for (int x = 0; x < WIDTH; x++) {
+            g.setColor(LINE_COLOR);
             g.fillRect(x * CELL_SIZE, 0, LINE_SIZE, CELL_SIZE * HEIGHT);
+            g.setColor(DEAD_COLOR);
+            for (int i = 0; i < HEIGHT; i++) {
+                g.fillRect(x * CELL_SIZE + 1, i * CELL_SIZE + 1, LINE_SIZE, CELL_SIZE * HEIGHT);
+            }
         }
+
         //draw horizontal grid lines
         for (int y = 0; y < HEIGHT; y++) {
-            g.fillRect(0 ,y * CELL_SIZE, WIDTH * CELL_SIZE, LINE_SIZE);
+            g.setColor(LINE_COLOR);
+            g.fillRect(0, y * CELL_SIZE, WIDTH * CELL_SIZE, LINE_SIZE);
         }
     }
 
