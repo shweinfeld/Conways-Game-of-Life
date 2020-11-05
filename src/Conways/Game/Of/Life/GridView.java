@@ -11,7 +11,6 @@ import java.awt.*;
 
 public class GridView extends JComponent {
 
-    //private final Grid grid;
     public static final int CELL_SIZE = 15;
     public static final int BORDERED_CELL_SIZE = 17;
     public static final int LINE_SIZE = 1;
@@ -21,7 +20,6 @@ public class GridView extends JComponent {
     public static final Color DEAD_COLOR = Color.GRAY;
     public static final Color LINE_COLOR = Color.BLACK;
     Grid grid;
-    //boolean[][] squares;
 
     public GridView(Grid grid) {
         this.grid = grid;
@@ -34,18 +32,19 @@ public class GridView extends JComponent {
         //paintLifeStatus(g);
     }
 
-//    private void paintLifeStatus(Graphics g) {
-//        for (int i = 0; i < WIDTH; i++) {
-//            for (int j = 0; j < HEIGHT; j++) {
-//                //not sure why ternary wasn't working
-//                if (grid.getCells(i, j)) {
-//                    g.setColor(LIVE_COLOR);
-//                } else {
-//                    g.setColor(DEAD_COLOR);
-//                }
-//            }
-//        }
-//    }
+    private void paintLifeStatus(Graphics g) {
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
+                //not sure why ternary wasn't working
+                if (grid.getCells(i, j)) {
+                    g.setColor(LIVE_COLOR);
+                } else {
+                    g.setColor(DEAD_COLOR);
+                }
+                g.fillRect(i * BORDERED_CELL_SIZE, j * BORDERED_CELL_SIZE, CELL_SIZE, CELL_SIZE);
+            }
+        }
+    }
 
     private void paintGrid(Graphics g) {
         g.setColor(LINE_COLOR);
