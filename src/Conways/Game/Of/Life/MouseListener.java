@@ -9,7 +9,6 @@ public class MouseListener implements java.awt.event.MouseListener {
     private final Grid grid;
     private final GridView view;
 
-
     public MouseListener(Grid grid, GridView view) {
         this.grid = grid;
         this.view = view;
