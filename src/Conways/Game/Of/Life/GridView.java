@@ -13,6 +13,7 @@ public class GridView extends JComponent {
 
     //private final Grid grid;
     public static final int CELL_SIZE = 10;
+    public static final int LINE_SIZE = 1;
     public static final int HEIGHT = 30;
     public static final int WIDTH = 50;
     public static final Color LIVE_COLOR = Color.ORANGE;
@@ -34,13 +35,14 @@ public class GridView extends JComponent {
     }
 
     private void paintGrid(Graphics g) {
+        g.setColor(LINE_COLOR);
         //draw vertical grid lines
         for (int x = 0; x < WIDTH; x++) {
-            g.drawLine(x * CELL_SIZE, 0, x * CELL_SIZE, CELL_SIZE * HEIGHT);
+            g.fillRect(x * CELL_SIZE, 0, LINE_SIZE, CELL_SIZE * HEIGHT);
         }
         //draw horizontal grid lines
         for (int y = 0; y < HEIGHT; y++) {
-            g.drawLine(0, y * CELL_SIZE, CELL_SIZE * WIDTH, y * CELL_SIZE);
+            g.fillRect(0 ,y * CELL_SIZE, WIDTH * CELL_SIZE, LINE_SIZE);
         }
     }
 
