@@ -9,7 +9,8 @@ public class GridFrame extends JFrame {
     JButton clearButton;
     JPanel bottom = new JPanel();
 
-    public GridFrame(GridView gridView, JButton nextButton, JButton clearButton) {
+
+    public GridFrame(MouseListener listener, GridView gridView, JButton nextButton, JButton clearButton) {
 
         //encapsulate?
         this.grid = gridView.grid;
@@ -21,21 +22,17 @@ public class GridFrame extends JFrame {
         setTitle("Game of Life");
         setLayout(new BorderLayout());
 
+        gridView.addMouseListener(listener);
         add(gridView, BorderLayout.CENTER);
         bottom.setLayout(new FlowLayout());
         clearButton.setText("Clear");
+        clearButton.addActionListener(ActionEvent -> {grid.clearGrid();});
         bottom.add(clearButton);
         nextButton.setText("Next");
-        nextButton.addActionListener(ActionEvent -> {getNextGen(grid);});
+        nextButton.addActionListener(ActionEvent -> {grid.goToNextGeneration();});
         bottom.add(nextButton);
         add(bottom, BorderLayout.SOUTH);
-        nextButton.addActionListener(ActionEvent -> {
-            getNextGen(grid);
-        });
 
     }
 
-    private void getNextGen(Grid grid) {
-        grid.goToNextGeneration();
-    }
 }
