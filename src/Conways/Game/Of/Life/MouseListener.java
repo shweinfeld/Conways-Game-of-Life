@@ -26,7 +26,7 @@ public class MouseListener implements java.awt.event.MouseListener {
         int col = e.getY();
         int rowIndex = (int)(row / BORDERED_CELL_SIZE);
         int colIndex = (int)(col/ BORDERED_CELL_SIZE);
-        System.out.println(rowIndex);
+        //System.out.println(rowIndex);
 
         if (grid.getCells(rowIndex, colIndex)) {
             grid.setCells(rowIndex, colIndex, false);
