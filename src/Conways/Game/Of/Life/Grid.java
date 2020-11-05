@@ -40,7 +40,7 @@ public class Grid {
                 }
             }
         }
-        generation++;
+        increaseGeneration();
     }
 
     public void clearGrid() {
@@ -64,7 +64,7 @@ public class Grid {
         return generation;
     }
 
-    public void setGeneration(int generation) {
-        this.generation = generation;
+    public void increaseGeneration() {
+        generation++;
     }
 }
