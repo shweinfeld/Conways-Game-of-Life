@@ -22,8 +22,8 @@ public class Grid {
 
     public void goToNextGeneration() {
         boolean[][] futureArray = new boolean[ROW][COL];
-        for (int i = 0; i < ROW - 1; i++) {
-            for (int j = 0; j < COL - 1; j++) {
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COL; j++) {
                 aliveNeighbors = calculateAliveNeighbors(aliveNeighbors, i, j);
                 if (gridArray[i][j] && (aliveNeighbors < 2) || aliveNeighbors > 3) {
                     futureArray[i][j] = false;
@@ -43,6 +43,7 @@ public class Grid {
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
                 if ((row+i)!= -1 && (column+j) !=-1 && (row + i != row || column + j != column)
+                        && row + i != ROW && column + j != COL
                         && gridArray[row + i][column + j]) {
                     aliveNeighbors++;
                 }
