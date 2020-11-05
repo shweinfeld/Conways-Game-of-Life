@@ -10,7 +10,10 @@ public class Grid {
      * Author: Chashie Komendant
      */
 
-    private final Boolean[][] gridArray = new Boolean[30][50];
+    private final int row = 30;
+    private final int col = 50;
+    private final boolean[][] gridArray = new boolean[row][col];
+
 
     public Grid() {
 
@@ -21,10 +24,14 @@ public class Grid {
     }
 
     public void goToNextGeneration(){
-        
+
     }
 
-    public Boolean[][] getGridArray() {
-        return gridArray;
+    public boolean getCells(int row, int col){
+        return gridArray[row][col];
+    }
+
+    public void setCells(int row, int col, boolean value){
+        gridArray[row][col] = value;
     }
 }
