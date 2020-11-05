@@ -41,7 +41,7 @@ public class GridView extends JComponent {
                     g.setColor(DEAD_COLOR);
                 }
                 g.fillRect(i * BORDERED_CELL_SIZE, j * BORDERED_CELL_SIZE, CELL_SIZE, CELL_SIZE);
-                System.out.println(i * BORDERED_CELL_SIZE);
+                //System.out.println(i * BORDERED_CELL_SIZE);
             }
         }
     }

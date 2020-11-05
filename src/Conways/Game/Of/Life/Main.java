@@ -11,7 +11,8 @@ public class Main {
         JButton clearButton = new JButton();
         Grid grid = new Grid();
         GridView view = new GridView(grid);
-        GridFrame frame = new GridFrame(view, nextButton, clearButton);
+        MouseListener listener = new MouseListener(grid, view);
+        GridFrame frame = new GridFrame(listener, view, nextButton, clearButton);
         frame.setVisible(true);
     }
 }
