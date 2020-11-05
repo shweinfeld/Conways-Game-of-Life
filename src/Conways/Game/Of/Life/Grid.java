@@ -13,6 +13,7 @@ public class Grid {
     private final int COL = 30;
     private final boolean[][] gridArray = new boolean[ROW][COL];
     private int generation = 0;
+    private int aliveNeighbors = 0;
 
 
     public Grid() {
@@ -22,26 +23,29 @@ public class Grid {
     public void goToNextGeneration() {
         for (int i = 0; i < ROW - 1; i++) {
             for (int j = 0; j < COL - 1; j++) {
-                int aliveNeighbors = 0;
-                for (int k = -1; k <= 1; k++) {
-                    for (int l = -1; l <= 1; l++) {
-                        if ((i+k)!= -1 && (j+l) !=-1 && gridArray[i + k][j + l]) {
-                            aliveNeighbors++;
-                        }
-                    }
-                }
-                if (gridArray[i][j] && aliveNeighbors < 2) {
-                    gridArray[i][j] = false;
-                } else if (gridArray[i][j] && aliveNeighbors > 3) {
+                aliveNeighbors = calculateAliveNeighbors(aliveNeighbors, i, j);
+                if (gridArray[i][j] && (aliveNeighbors < 2) || aliveNeighbors > 3) {
                     gridArray[i][j] = false;
                 } else if (gridArray[i][j] && aliveNeighbors == 3) {
                     gridArray[i][j] = true;
                 } else {
                     gridArray[i][j] = gridArray[i][j];
                 }
+                aliveNeighbors = 0;
             }
         }
         increaseGeneration();
+    }
+
+    public int calculateAliveNeighbors(int aliveNeighbors, int row, int column){
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                if ((row+i)!= -1 && (column+j) !=-1 && gridArray[row + i][column + j]) {
+                    aliveNeighbors++;
+                }
+            }
+        }
+        return aliveNeighbors;
     }
 
     public void clearGrid() {

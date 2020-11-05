@@ -26,10 +26,10 @@ public class GridFrame extends JFrame {
         add(gridView, BorderLayout.CENTER);
         bottom.setLayout(new FlowLayout());
         clearButton.setText("Clear");
-        clearButton.addActionListener(ActionEvent -> {grid.clearGrid();});
+        clearButton.addActionListener(ActionEvent -> {grid.clearGrid(); gridView.repaint();});
         bottom.add(clearButton);
         nextButton.setText("Next");
-        nextButton.addActionListener(ActionEvent -> {grid.goToNextGeneration();});
+        nextButton.addActionListener(ActionEvent -> {grid.goToNextGeneration(); gridView.repaint();});
         bottom.add(nextButton);
         add(bottom, BorderLayout.SOUTH);
 
