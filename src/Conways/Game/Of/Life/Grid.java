@@ -27,7 +27,7 @@ public class Grid {
                 aliveNeighbors = calculateAliveNeighbors(aliveNeighbors, i, j);
                 if (gridArray[i][j] && (aliveNeighbors < 2) || aliveNeighbors > 3) {
                     futureArray[i][j] = false;
-                } else if (gridArray[i][j] && aliveNeighbors == 3) {
+                } else if (!gridArray[i][j] && aliveNeighbors == 3) {
                     futureArray[i][j] = true;
                 } else {
                     futureArray[i][j] = gridArray[i][j];
@@ -42,7 +42,8 @@ public class Grid {
     public int calculateAliveNeighbors(int aliveNeighbors, int row, int column){
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
-                if ((row+i)!= -1 && (column+j) !=-1 && gridArray[row + i][column + j]) {
+                if ((row+i)!= -1 && (column+j) !=-1 && (row + i != row || column + j != column)
+                        && gridArray[row + i][column + j]) {
                     aliveNeighbors++;
                 }
             }
