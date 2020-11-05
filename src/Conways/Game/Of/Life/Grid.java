@@ -14,6 +14,7 @@ public class Grid {
     private final int col = 30;
     private final boolean[][] gridArray = new boolean[row][col];
 
+
     public Grid() {
 
     }
