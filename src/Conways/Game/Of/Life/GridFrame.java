@@ -4,20 +4,32 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GridFrame extends JFrame {
+    Grid grid;
+    JButton nextButton;
+    JButton clearButton;
+    JPanel bottom = new JPanel();
 
+    public GridFrame(GridView gridView, JButton nextButton, JButton clearButton) {
 
-    public GridFrame(
-            Grid grid,
-            GridView gridView,
-            JButton nextButton
-    ) {
-        setSize(650, 350);
+        //encapsulate?
+        this.grid = gridView.grid;
+        this.nextButton = nextButton;
+        this.clearButton = clearButton;
+        setSize(1000, 600);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Game of Life");
         setLayout(new BorderLayout());
 
         add(gridView, BorderLayout.CENTER);
-        nextButton.addActionListener(ActionEvent -> {getNextGen(grid);});
+        bottom.setLayout(new FlowLayout());
+        clearButton.setText("Clear");
+        bottom.add(clearButton);
+        nextButton.setText("Next");
+        bottom.add(nextButton);
+        add(bottom, BorderLayout.SOUTH);
+        nextButton.addActionListener(ActionEvent -> {
+            getNextGen(grid);
+        });
 
     }
 

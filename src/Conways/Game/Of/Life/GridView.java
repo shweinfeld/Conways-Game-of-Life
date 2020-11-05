@@ -13,12 +13,10 @@ public class GridView extends JComponent {
 
     public static final int CELL_SIZE = 15;
     public static final int BORDERED_CELL_SIZE = 17;
-    public static final int LINE_SIZE = 1;
     public static final int HEIGHT = 30;
     public static final int WIDTH = 50;
-    public static final Color LIVE_COLOR = Color.ORANGE;
-    public static final Color DEAD_COLOR = Color.GRAY;
-    public static final Color LINE_COLOR = Color.BLACK;
+    private final Color LIVE_COLOR = Color.ORANGE;
+    private final Color DEAD_COLOR = Color.GRAY;
     Grid grid;
 
     public GridView(Grid grid) {
@@ -28,7 +26,6 @@ public class GridView extends JComponent {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        paintBackground(g);
         paintLifeStatus(g);
 
     }
@@ -44,12 +41,8 @@ public class GridView extends JComponent {
                     g.setColor(DEAD_COLOR);
                 }
                 g.fillRect(i * BORDERED_CELL_SIZE, j * BORDERED_CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                System.out.println(i * BORDERED_CELL_SIZE);
             }
         }
-    }
-
-    private void paintBackground(Graphics g) {
-        g.setColor(LINE_COLOR);
-        g.fillRect(0, 0, WIDTH * BORDERED_CELL_SIZE, HEIGHT * BORDERED_CELL_SIZE);
     }
 }
