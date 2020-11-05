@@ -19,44 +19,36 @@ public class Grid {
     }
 
     public void goToNextGeneration() {
-        if (generation == 0) {
-            for (int i = 0; i < row; i++) {
-                for (int j = 0; j < col; j++) {
-                    gridArray[row][col] = false;
-                }
-            }
-        }
-        else {
-            populateGrid();
-        }
-    }
-
-    public void populateGrid() {
-        for (int i = 0; i < row-1; i++) {
-            for (int j = 0; j < col-1; j++) {
+        for (int i = 0; i < row - 1; i++) {
+            for (int j = 0; j < col - 1; j++) {
                 int aliveNeighbors = 0;
                 for (int k = -1; k <= 1; k++) {
                     for (int l = -1; l <= 1; l++) {
-                        if (gridArray[i+k][j+l]){
+                        if (gridArray[i + k][j + l]) {
                             aliveNeighbors++;
                         }
                     }
                 }
-                if(gridArray[i][j] && aliveNeighbors < 2){
+                if (gridArray[i][j] && aliveNeighbors < 2) {
                     gridArray[i][j] = false;
-                }
-                else if(gridArray[i][j] && aliveNeighbors > 3){
+                } else if (gridArray[i][j] && aliveNeighbors > 3) {
                     gridArray[i][j] = false;
-                }
-                else if(gridArray[i][j] && (aliveNeighbors == 2 || aliveNeighbors == 3)){
+                } else if (gridArray[i][j] && (aliveNeighbors == 2 || aliveNeighbors == 3)) {
                     gridArray[i][j] = true;
-                }
-                else {
+                } else {
                     gridArray[i][j] = gridArray[i][j];
                 }
             }
         }
         generation++;
+    }
+
+    public void clearGrid() {
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                gridArray[row][col] = false;
+            }
+        }
     }
 
     public boolean getCells(int row, int col) {
@@ -65,5 +57,13 @@ public class Grid {
 
     public void setCells(int row, int col, boolean value) {
         gridArray[row][col] = value;
+    }
+
+    public int getGeneration() {
+        return generation;
+    }
+
+    public void setGeneration(int generation) {
+        this.generation = generation;
     }
 }
