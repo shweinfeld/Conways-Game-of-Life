@@ -15,6 +15,7 @@ public class GridFrame extends JFrame {
         this.grid = gridView.grid;
         this.nextButton = nextButton;
         this.clearButton = clearButton;
+
         setSize(1000, 600);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Game of Life");
@@ -25,6 +26,7 @@ public class GridFrame extends JFrame {
         clearButton.setText("Clear");
         bottom.add(clearButton);
         nextButton.setText("Next");
+        nextButton.addActionListener(ActionEvent -> {getNextGen(grid);});
         bottom.add(nextButton);
         add(bottom, BorderLayout.SOUTH);
         nextButton.addActionListener(ActionEvent -> {
