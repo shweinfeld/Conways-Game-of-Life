@@ -11,32 +11,38 @@ import java.awt.*;
 
 public class GridView extends JComponent {
 
-    //private final Grid grid;
-    public static final int CELL_SIZE = 10;
+    public static final int CELL_SIZE = 15;
+    public static final int BORDERED_CELL_SIZE = 17;
     public static final int HEIGHT = 30;
     public static final int WIDTH = 50;
-    public static final Color LIVE_COLOR = Color.WHITE;
-    public static final Color DEAD_COLOR = Color.BLACK;
-    int[][] squares;
+    private final Color LIVE_COLOR = Color.ORANGE;
+    private final Color DEAD_COLOR = Color.GRAY;
+    Grid grid;
 
     public GridView(Grid grid) {
+        this.grid = grid;
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        paintGrid(g);
-        //paintLive(g);
-        //paintDead(g);
+        paintLifeStatus(g);
+
     }
 
-    private void paintGrid(Graphics g) {
-        for (int x = 0; x < WIDTH; x++) {
-            for (int y = 0; y < HEIGHT; y++) {
-                g.drawRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+    private void paintLifeStatus(Graphics g) {
 
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
+                //not sure why ternary wasn't working
+                if (grid.getCells(i, j)) {
+                    g.setColor(LIVE_COLOR);
+                } else {
+                    g.setColor(DEAD_COLOR);
+                }
+                g.fillRect(i * BORDERED_CELL_SIZE, j * BORDERED_CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                System.out.println(i * BORDERED_CELL_SIZE);
             }
         }
     }
-
 }
