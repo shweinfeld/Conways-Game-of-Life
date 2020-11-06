@@ -24,9 +24,9 @@ public class Grid {
         for (int i = 0; i < ROW; i++) {
             for (int j = 0; j < COL; j++) {
                 int aliveNeighbors = calculateAliveNeighbors(i, j);
-                if (gridArray[i][j] && (aliveNeighbors < 2) || aliveNeighbors > 3) {
+                if (aliveNeighbors < 2 || aliveNeighbors > 3) {
                     futureArray[i][j] = false;
-                } else if (!gridArray[i][j] && aliveNeighbors == 3) {
+                } else if (aliveNeighbors == 3) {
                     futureArray[i][j] = true;
                 } else {
                     futureArray[i][j] = gridArray[i][j];
