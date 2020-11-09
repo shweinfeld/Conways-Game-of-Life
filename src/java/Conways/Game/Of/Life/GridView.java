@@ -35,7 +35,7 @@ public class GridView extends JComponent {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 //not sure why ternary wasn't working
-                if (grid.getCells(i, j)) {
+                if (grid.getCell(i, j)) {
                     g.setColor(LIVE_COLOR);
                 } else {
                     g.setColor(DEAD_COLOR);
