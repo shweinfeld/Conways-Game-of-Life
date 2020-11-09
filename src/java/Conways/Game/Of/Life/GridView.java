@@ -34,7 +34,7 @@ public class GridView extends JComponent {
 
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
-               g.setColor(grid.getCells(i,j)? LIVE_COLOR : DEAD_COLOR);
+               g.setColor(grid.getCell(i,j)? LIVE_COLOR : DEAD_COLOR);
                 g.fillRect(i * BORDERED_CELL_SIZE, j * BORDERED_CELL_SIZE, CELL_SIZE, CELL_SIZE);
             }
         }
