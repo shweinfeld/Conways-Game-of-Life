@@ -7,12 +7,10 @@ import static Conways.Game.Of.Life.GridView.BORDERED_CELL_SIZE;
 
 public class MouseListener implements java.awt.event.MouseListener {
     private final Grid grid;
-    private final GridView view;
 
 
-    public MouseListener(Grid grid, GridView view) {
+    public MouseListener(Grid grid) {
         this.grid = grid;
-        this.view = view;
     }
 
 
@@ -23,8 +21,8 @@ public class MouseListener implements java.awt.event.MouseListener {
         int rowIndex = row / BORDERED_CELL_SIZE;
         int colIndex = col/ BORDERED_CELL_SIZE;
 
-        grid.setCells(rowIndex, colIndex, !grid.getCells(rowIndex, colIndex));
-        view.repaint();
+        grid.setCell(rowIndex, colIndex, !grid.getCell(rowIndex, colIndex));
+        e.getComponent().repaint();
     }
 
     @Override
