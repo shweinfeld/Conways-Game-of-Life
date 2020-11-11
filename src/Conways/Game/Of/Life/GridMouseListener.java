@@ -5,11 +5,11 @@ import java.awt.event.MouseEvent;
 import static Conways.Game.Of.Life.GridView.BORDERED_CELL_SIZE;
 
 
-public class MouseListener implements java.awt.event.MouseListener {
+public class GridMouseListener implements java.awt.event.MouseListener {
     private final Grid grid;
 
 
-    public MouseListener(Grid grid) {
+    public GridMouseListener(Grid grid) {
         this.grid = grid;
     }
 

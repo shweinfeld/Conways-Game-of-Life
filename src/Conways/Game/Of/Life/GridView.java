@@ -13,11 +13,9 @@ public class GridView extends JComponent {
 
     public static final int CELL_SIZE = 15;
     public static final int BORDERED_CELL_SIZE = 17;
-    public static final int HEIGHT = 30;
-    public static final int WIDTH = 50;
-    private final Color LIVE_COLOR = Color.ORANGE;
-    private final Color DEAD_COLOR = Color.GRAY;
-    Grid grid;
+    private static final Color LIVE_COLOR = Color.ORANGE;
+    private static final Color DEAD_COLOR = Color.GRAY;
+    private final Grid grid;
 
     public GridView(Grid grid) {
         this.grid = grid;
@@ -30,10 +28,14 @@ public class GridView extends JComponent {
 
     }
 
+    public Grid getGrid() {
+        return grid;
+    }
+
     private void paintLifeStatus(Graphics g) {
 
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
+        for (int i = 0; i < Grid.ROW; i++) {
+            for (int j = 0; j < Grid.COL; j++) {
                g.setColor(grid.getCell(i,j)? LIVE_COLOR : DEAD_COLOR);
                 g.fillRect(i * BORDERED_CELL_SIZE, j * BORDERED_CELL_SIZE, CELL_SIZE, CELL_SIZE);
             }
