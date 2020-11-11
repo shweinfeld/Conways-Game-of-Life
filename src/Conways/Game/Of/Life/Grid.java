@@ -9,8 +9,8 @@ public class Grid {
      * Author: Jennifer Komendant
      */
 
-    private final int ROW = 50;
-    private final int COL = 30;
+    public final static int ROW = 50;
+    public final static int COL = 30;
     private boolean[][] gridArray = new boolean[ROW][COL];
     private int generation = 0;
 
@@ -24,7 +24,7 @@ public class Grid {
         for (int i = 0; i < ROW; i++) {
             for (int j = 0; j < COL; j++) {
                 int aliveNeighbors = calculateAliveNeighbors(i, j);
-                futureArray[i][j] = aliveNeighbors != 2 ? aliveNeighbors == 3 : gridArray[i][j];
+                futureArray[i][j] = aliveNeighbors == 3 || (gridArray[i][j] && aliveNeighbors == 2);
             }
         }
         gridArray = futureArray;
@@ -35,7 +35,10 @@ public class Grid {
         int aliveNeighbors = 0;
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
-                if ((row + i) != -1 && (column + j) != -1 && (row + i != row || column + j != column)
+                //checks that the row and column is not out of bounds
+                //and that the cell being checked does not check itself
+                if ((row + i) != -1 && (column + j) != -1
+                        && (row + i != row || column + j != column)
                         && row + i != ROW && column + j != COL
                         && gridArray[row + i][column + j]) {
                     aliveNeighbors++;

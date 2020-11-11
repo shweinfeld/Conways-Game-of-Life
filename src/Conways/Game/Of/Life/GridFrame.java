@@ -10,10 +10,10 @@ public class GridFrame extends JFrame {
     JPanel bottom = new JPanel();
 
 
-    public GridFrame(MouseListener listener, GridView gridView, JButton nextButton, JButton clearButton) {
+    public GridFrame(GridMouseListener listener, GridView gridView, JButton nextButton, JButton clearButton) {
 
         //encapsulate?
-        this.grid = gridView.grid;
+        this.grid = gridView.getGrid();
         this.nextButton = nextButton;
         this.clearButton = clearButton;
 
