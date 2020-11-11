@@ -4,3 +4,5 @@
 #####Jennifer Komendant (@jkomendant)
 #####Ricki Peikes (@rpeikes)
 #####Shoshana (Weinfeld) Sokolin (@shweinfeld)
+
+![](LifeScreenshot.jpeg)
