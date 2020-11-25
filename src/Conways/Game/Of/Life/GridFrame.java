@@ -8,6 +8,9 @@ public class GridFrame extends JFrame {
     JButton nextButton;
     JButton clearButton;
     JPanel bottom = new JPanel();
+    GridView view;
+    JButton playButton;
+    boolean play = false;
 
 
     public GridFrame(GridMouseListener listener, GridView gridView, JButton nextButton, JButton clearButton) {
@@ -16,6 +19,8 @@ public class GridFrame extends JFrame {
         this.grid = gridView.getGrid();
         this.nextButton = nextButton;
         this.clearButton = clearButton;
+        this.view = gridView;
+        this.playButton = new JButton("Play/Pause");
 
         setSize(1000, 600);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -26,13 +31,49 @@ public class GridFrame extends JFrame {
         add(gridView, BorderLayout.CENTER);
         bottom.setLayout(new FlowLayout());
         clearButton.setText("Clear");
-        clearButton.addActionListener(ActionEvent -> {grid.clearGrid(); gridView.repaint();});
+        clearButton.addActionListener(ActionEvent -> {
+            clearBoard();
+        });
         bottom.add(clearButton);
         nextButton.setText("Next");
-        nextButton.addActionListener(ActionEvent -> {grid.goToNextGeneration(); gridView.repaint();});
+        playButton.addActionListener(ActionEvent -> playLoop());
+        bottom.add(playButton);
+        nextButton.addActionListener(ActionEvent -> {
+            displayNextGen();
+        });
         bottom.add(nextButton);
         add(bottom, BorderLayout.SOUTH);
 
+    }
+
+    private void displayNextGen() {
+        if (!play) {
+            grid.goToNextGeneration();
+            view.repaint();
+        }
+
+    }
+
+    private void clearBoard() {
+        play = false;
+        grid.clearGrid();
+        view.repaint();
+    }
+
+    private void playLoop() {
+        play = !play;
+        Thread thread = new Thread(() -> {
+            while (play) {
+                grid.goToNextGeneration();
+                view.repaint();
+                try {
+                    Thread.sleep(125);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
     }
 
 }
