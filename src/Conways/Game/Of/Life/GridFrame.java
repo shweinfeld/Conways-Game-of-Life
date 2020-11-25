@@ -7,9 +7,9 @@ public class GridFrame extends JFrame {
     Grid grid;
     JButton nextButton;
     JButton clearButton;
-    JButton playButton;
     JPanel bottom = new JPanel();
     GridView view;
+    JButton playButton;
     boolean play = false;
 
 
