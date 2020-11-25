@@ -2,7 +2,6 @@ package Conways.Game.Of.Life;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class GridFrame extends JFrame {
     Grid grid;
@@ -11,6 +10,7 @@ public class GridFrame extends JFrame {
     JButton playButton;
     JPanel bottom = new JPanel();
     GridView view;
+    boolean play = false;
 
 
     public GridFrame(GridMouseListener listener, GridView gridView, JButton nextButton, JButton clearButton) {
@@ -20,7 +20,7 @@ public class GridFrame extends JFrame {
         this.nextButton = nextButton;
         this.clearButton = clearButton;
         this.view = gridView;
-        this.playButton = new JButton();
+        this.playButton = new JButton("Play/Pause");
 
         setSize(1000, 600);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -31,33 +31,46 @@ public class GridFrame extends JFrame {
         add(gridView, BorderLayout.CENTER);
         bottom.setLayout(new FlowLayout());
         clearButton.setText("Clear");
-        clearButton.addActionListener(ActionEvent -> {grid.clearGrid(); gridView.repaint();});
+        clearButton.addActionListener(ActionEvent -> clearBoard());
         bottom.add(clearButton);
         nextButton.setText("Next");
-        nextButton.addActionListener(ActionEvent -> {grid.goToNextGeneration(); gridView.repaint();});
-        playButton.setText("Play");
         playButton.addActionListener(ActionEvent -> playLoop());
+        bottom.add(playButton);
+        nextButton.addActionListener(ActionEvent -> displayNextGen());
         bottom.add(nextButton);
         bottom.add(playButton);
         add(bottom, BorderLayout.SOUTH);
 
     }
 
-    private void playLoop(){
+    private void displayNextGen() {
+        if (!play) {
+            grid.goToNextGeneration();
+            view.repaint();
+        }
 
+    }
+
+    private void clearBoard() {
+        play = false;
+        grid.clearGrid();
+        view.repaint();
+    }
+
+    private void playLoop() {
+        play = !play;
         Thread thread = new Thread(() -> {
-            while (true){
+            while (play) {
                 grid.goToNextGeneration();
                 view.repaint();
                 try {
-                    Thread.sleep(200);
+                    Thread.sleep(125);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         });
         thread.start();
-
     }
 
 }
