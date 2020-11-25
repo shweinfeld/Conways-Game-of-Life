@@ -31,17 +31,14 @@ public class GridFrame extends JFrame {
         add(gridView, BorderLayout.CENTER);
         bottom.setLayout(new FlowLayout());
         clearButton.setText("Clear");
-        clearButton.addActionListener(ActionEvent -> {
-            clearBoard();
-        });
+        clearButton.addActionListener(ActionEvent -> clearBoard());
         bottom.add(clearButton);
         nextButton.setText("Next");
         playButton.addActionListener(ActionEvent -> playLoop());
         bottom.add(playButton);
-        nextButton.addActionListener(ActionEvent -> {
-            displayNextGen();
-        });
+        nextButton.addActionListener(ActionEvent -> displayNextGen());
         bottom.add(nextButton);
+        bottom.add(playButton);
         add(bottom, BorderLayout.SOUTH);
 
     }
